@@ -1,0 +1,22 @@
+---
+import Social from './Social.astro';
+---
+
+<footer>
+	<p>
+		<Social
+			platform="bluesky"
+			url="https://bsky.app/profile/theodinspire.com"
+		/>
+		<Social platform="mastodon" url="https://retro.pizza/@theodinspire" />
+		<Social platform="github" username="theodinspire" />
+	</p>
+</footer>
+
+<style>
+	footer {
+		display: flex;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+</style>
