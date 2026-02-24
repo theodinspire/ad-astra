@@ -23,16 +23,15 @@ const skillColor = 'crimson';
 
 	<p>Some quick facts:</p>
 	<ul>{skills.map((x) => <li class="skill">{x}</li>)}</ul>
-	BaseLayout>
-
-	<style define:vars={{ skillColor }}>
-		h1 {
-			color: pink;
-			font-size: 4rem;
-		}
-		.skill {
-			color: var(--skillColor);
-			font-weight: bold;
-		}
-	</style>
 </BaseLayout>
+
+<style define:vars={{ skillColor }}>
+	h1 {
+		color: pink;
+		font-size: 4rem;
+	}
+	.skill {
+		color: var(--skillColor);
+		font-weight: bold;
+	}
+</style>
