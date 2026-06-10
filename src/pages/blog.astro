@@ -2,12 +2,9 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import '../styles/global.css';
 import BlogSummary from '@components/BlogSummary.astro';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
 
-const allPosts = Object.values(
-	import.meta.glob('./posts/*.md', { eager: true }),
-);
+const allPosts = await getCollection('blog');
 
 const pageTitle = 'Blog';
 ---
@@ -16,8 +13,8 @@ const pageTitle = 'Blog';
 	<p>Just filling in the text while doing this tutorial</p>
 	<ul>
 		{
-			allPosts.map((post: unknown) => (
-				<BlogSummary url={post.url} title={post.frontmatter.title} />
+			allPosts.map((post) => (
+				<BlogSummary id={post.id} title={post.data.title} />
 			))
 		}
 	</ul>

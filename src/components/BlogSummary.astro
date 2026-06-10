@@ -1,9 +1,7 @@
 ﻿---
-const {
-	url,
-	title,
-} = Astro.props;
+const { id, title } = Astro.props;
 ---
+
 <li>
-	<a href={url}>{title}</a>
+	<a href={`/blog/${id}`}>{title}</a>
 </li>

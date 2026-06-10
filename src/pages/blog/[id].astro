@@ -1,0 +1,69 @@
+﻿---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+export const getStaticPaths = (async () => {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+
+const pubDate = post.data.pubDate;
+const bylineDate = pubDate.toLocaleDateString(undefined, {
+	weekday: 'long',
+	month: 'long',
+	year: 'numeric',
+	day: 'numeric',
+});
+
+const tags = post.data.tags;
+
+const { Content } = await render(post);
+---
+
+<BaseLayout pageTitle={post.data.title}>
+	<article>
+		<div class="byline">
+			<address class="author">by {post.data.author}</address> on
+			<time datetime={pubDate.toISOString()} title={bylineDate}
+				>{bylineDate}</time
+			>
+		</div>
+		<div class="tags">
+			{
+				tags.map((tag: string) => (
+					<p class="tag">
+						<a href={`/tags/${tag}`}>{tag}</a>
+					</p>
+				))
+			}
+		</div>
+	</article>
+	<Content />
+</BaseLayout>
+
+<style>
+	a {
+		color: #00539f;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.tag {
+		margin: 0.25em;
+		border: dotted 1px #a1a1a1;
+		border-radius: 0.25em;
+		padding: 0.25em 0.5em;
+		font-size: 0.85em;
+		background-color: #f8fcfd;
+	}
+</style>
