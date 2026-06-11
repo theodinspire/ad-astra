@@ -1,0 +1,109 @@
+﻿---
+title: 'Fancy Pants File Hierarchy and Astro Post Generation'
+pubDate: 2026-06-10T13:29:00-05:00
+description: 'Learning how to have more freedom in grouped files in my project directories'
+author: 'Odin Ravensson'
+tags: ['development', 'website', 'astro']
+---
+import AdHoc from './AdHoc.vue';
+
+So far, on this site, I have blog posts generating only from the markdown files in my `./src/pages/posts` directory.
+However, this can be limiting if, say, I wanted to have *ad hoc* components and islands grouped in a directory with the
+main post markdown file. Perhaps something a bit like in the following.
+
+```
+./src/pages/posts
+├── 20260223-1.md
+├── 20260309-1.md
+└─┬ 20260610-1
+  ├── index.md
+  └── AdHoc.vue
+```
+
+Unfortunately, Astro only accepts `.astro` files for items in the `pages` directory—well, beyond content files like
+Markdown, JSON, and yaml—as that is how it knows what pages to generate. Additionally, in order to put components into
+Markdown files, one has to use the XML extension version of Markdown, `.mdx`.
+
+### Adding MDX Support
+So my first step is to install the MDX plug-in for Astro. This little command installs the javascript library and adds
+the plug-in into the Astro configuration.
+
+```bash
+yarn astro add mdx
+```
+
+### Refactoring the Blog Content
+#### Moving the files
+I then moved my blog entries into a different segment of the file structure.
+```
+./src/content/blog
+├── 20260223-1.md
+├── 20260309-1.md
+└─┬ 20260610-1
+  ├── index.mdx
+  └── AdHoc.vue
+```
+
+#### Configuring the Content Collection
+Moving these out of `./src/pages/posts` essentially deletes all the content from the blog, so now I have to tell Astro
+where to find the pages. This itself is pretty easy: just export a dictionary of collections from `content.config.ts`.
+```typescript
+import { defineCollection } from 'astro/content/config';
+import { glob } from 'astro/loaders';
+
+const blog = defineCollection({
+	loader: glob({
+		pattern: ['*.(md|mdx)', '*/index.(md|mdx)'],
+		base: './src/content/blog',
+		generateId(options): string { ... },
+	}),
+});
+
+export const collections = { blog };
+```
+
+Here, to get to rely fully on typescript, you can define a `schema` for the content metadata in the collection
+definitions options using [Zod](https://zod.dev/api). Astro uses Zod's type inferencing when you pull in the collection
+entries as we will see below.
+
+#### Recreating the Base Blog Pages
+Next, I copied `./src/layouts/MarkdownPostLayout.astro` into `./src/pages/blog/[id].astro`. I also had to add the
+exported `getStaticPaths` method so that Astro knew where to get the post content.
+
+```typescript
+import type { GetStaticPaths } from 'astro';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+export const getStaticPaths = (async () => {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+
+const { Content } = await render(post);
+```
+That `render()` method handles the transformation from Markdown into an HTML component for Astro, which is a bit more
+work than the previous method. All the references to what was previously `Astro.props.frontmatter` had to be transformed
+into `Astro.props.post.data`, and the `<slot />` tag in the HTML had to be exchanged for `<Content />`. But when those
+were done, the pages generated smoothly.
+
+#### Updating the Blog and Tags Indices
+Since the pages were pulled into a collection, which already `glob`s them in, I no longer need to/can call them with
+vite's `import.meta.glob()` and instead have to call them in with `await getCollection('blog')`. I still get the same
+array usage of the entire set, but now I even get the type inferencing.
+
+Finally, all my pages are rendered exactly the same as they were before.
+
+### And Now, We Proudly Present
+All this just so that I can add Vue components into my blog posts. Adding these lines to this extended Markdown post
+```typescript jsx
+import AdHoc from './AdHoc.vue';
+<AdHoc />
+```
+is all I need to pull in this *ad hoc* component:
+<AdHoc />

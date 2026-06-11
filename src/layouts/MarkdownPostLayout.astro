@@ -16,13 +16,12 @@ const tags = frontmatter.tags;
 
 <BaseLayout pageTitle={frontmatter.title}>
 	<article>
-		<p class="byline">
+		<div class="byline">
 			<address class="author">by {frontmatter.author}</address> on <time
-				pubdate
-				datetime={pubDate}
+				datetime={pubDate.toISOString()}
 				title={bylineDate}>{bylineDate}</time
 			>
-		</p>
+		</div>
 		<div class="tags">
 			{
 				tags.map((tag: string) => (
