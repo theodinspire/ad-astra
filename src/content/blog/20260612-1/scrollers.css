@@ -1,0 +1,97 @@
+﻿@property --houdini-start {
+	syntax: "<color>";
+	initial-value: #5b55a0;
+	inherits: false;
+}
+
+@property --houdini-end {
+	syntax: "<color>";
+	initial-value: #f19cba;
+	inherits: false;
+}
+
+:root {
+	--amaranth-pink: #f19cba;
+	--coronation-blue: #5b55a0;
+	--blue-opal: #0c3b68;
+
+	--blue-to-pink: linear-gradient(var(--coronation-blue), var(--amaranth-pink) 50%);
+	--blue-to-blue: linear-gradient(var(--blue-opal), var(--coronation-blue) 50%);
+
+	--tricolor: linear-gradient(
+		var(--blue-opal), var(--coronation-blue) 25%, var(--coronation-blue) 50%, var(--amaranth-pink) 75%);
+}
+
+@supports (scroll-timeline-axis: x) {
+	.not-supported {
+		display: none;
+	}
+}
+
+@keyframes naive {
+	from { background: var(--blue-to-pink); }
+	to { background: var(--blue-to-blue); }
+}
+
+@keyframes stops {
+	from { background-position: bottom; }
+	to { background-position: top; }
+}
+
+@keyframes houdini {
+	from {
+		--houdini-start: #5b55a0;
+		--houdini-end: #f19cba;
+	}
+
+	to {
+		--houdini-start: #0c3b68;
+		--houdini-end: #5b55a0;
+	}
+}
+
+.amaranth-pink {
+	background-color: var(--amaranth-pink);
+	color: var(--coronation-blue);
+}
+
+.coronation-blue {
+	background-color: var(--coronation-blue);
+	color: var(--blue-opal);
+}
+
+.blue-opal {
+	background-color: var(--blue-opal);
+	color: var(--amaranth-pink);
+}
+
+.pink-to-blue {
+	background: var(--blue-to-pink);
+}
+
+.blue-to-blue {
+	background: var(--blue-to-blue);
+}
+
+.naive-animation {
+	scroll-timeline-name: --self;
+	animation: naive 1ms linear;
+	animation-timeline: --self;
+}
+
+.stops-animation {
+	background: var(--tricolor);
+	background-size: 100% 200%;
+
+	scroll-timeline-name: --self;
+	animation: stops 1ms linear;
+	animation-timeline: --self;
+}
+
+.houdini-animation {
+	background: linear-gradient(var(--houdini-start), var(--houdini-end) 50%);
+
+	scroll-timeline-name: --self;
+	animation: houdini 1ms linear;
+	animation-timeline: --self;
+}

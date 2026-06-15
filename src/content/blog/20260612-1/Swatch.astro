@@ -1,0 +1,60 @@
+﻿---
+interface Props {
+	id: string,
+	class: string,
+	short: boolean,
+	scroll: boolean,
+};
+
+const { id, class: className, short, scroll, ...rest } = Astro.props;
+
+const outerClassList = [
+	'outer',
+	className,
+];
+
+if (short) outerClassList.push('short');
+---
+<div id={id} class={outerClassList.join(' ')}>
+	{Astro.slots.has('default') &&
+		<div class="copy"><div><slot /></div></div>}
+	{scroll &&
+		<div class="scroller" />}
+</div>
+
+<style>
+	.outer {
+		margin: 1em min(25%, 5em);
+		border-radius: 3px;
+
+		position: relative;
+		height: 150px;
+
+		overflow-y: auto;
+
+		&.short {
+			height: 75px;
+		}
+	}
+
+	.copy {
+		position: sticky;
+		top: 0;
+
+		height: 100%;
+		width: 100%;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		font-family: "Agency FB", sans-serif;
+		font-size: 2.5em;
+		font-style: italic;
+	}
+
+	.scroller {
+		height: 500%;
+		z-index: 1;
+	}
+</style>
