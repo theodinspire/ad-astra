@@ -2,9 +2,10 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import '@styles/global.css';
 import BlogSummary from '@components/BlogSummary.astro';
-import { getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog');
+const allPosts = (await getCollection('blog') as CollectionEntry<'blog'>[])
+	.sort((left, right) => right.data.pubDate - left.data.pubDate);
 
 const pageTitle = 'Blog';
 ---

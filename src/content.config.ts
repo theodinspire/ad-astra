@@ -11,7 +11,7 @@ const blog = defineCollection({
 		base: './src/content/blog',
 		generateId({ entry, data }) {
 			const match = entry.match(datedIdPattern);
-			if (match[0]) return slug(match[0]);
+			if (match && match[0]) return slug(match[0]);
 			if (typeof data.slug === 'string') return slug(data.slug);
 			return slug('an post');
 		},
