@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"github-slugger": "^2.0.0",
 		"prettier": "3.8.1",
-		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-astro": "^0.14.1",
 		"vite": "^7.3.5"
 	},
 	"packageManager": "yarn@4.16.0"

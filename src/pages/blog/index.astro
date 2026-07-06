@@ -11,8 +11,7 @@ const pageTitle = 'Blog';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<p>Just filling in the text while doing this tutorial</p>
-	<ul>
+	<ul class="list-disc marker:text-core-500">
 		{
 			allPosts.map((post) => (
 				<BlogSummary id={post.id} title={post.data.title} />

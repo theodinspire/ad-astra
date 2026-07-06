@@ -1,3 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+	--color-core-50: #faf5f8;
+	--color-core-100: #f7ecf4;
+	--color-core-200: #f0dae9;
+	--color-core-300: #e5bcd7;
+	--color-core-400: #d492bc;
+	--color-core-500: #c371a3;
+	--color-core-600: #ae5486;
+	--color-core-700: #903f6a;
+	--color-core-800: #7c385b;
+	--color-core-900: #68334e;
+	--color-core-950: #3e192c;
+}
+
 html {
 	background-color: #f1f5f9;
 	font-family: sans-serif;
@@ -28,6 +44,30 @@ h1 {
 	font-size: 1.2rem;
 	font-weight: bold;
 	padding: 5px 10px;
+}
+
+a, .light a, a.light {
+	color: var(--color-core-700);
+	&:active, &:hover {
+		color: var(--color-core-600);
+		text-decoration-line: underline;
+	}
+
+	&:visited {
+		color: var(--color-core-800);
+	}
+}
+
+.dark a, a.dark {
+	color: var(--color-core-50);
+	&:active, &:hover {
+		color: var(--color-core-200);
+		text-decoration-line: underline;
+	}
+
+	&:visited {
+		color: var(--color-core-100);
+	}
 }
 
 .nav-links {
