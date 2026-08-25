@@ -1,0 +1,38 @@
+﻿@import 'colors.css';
+
+:root {
+	--blue-to-pink: linear-gradient(var(--coronation-blue), var(--amaranth-pink) 50%);
+	--blue-to-blue: linear-gradient(var(--blue-opal), var(--coronation-blue) 50%);
+}
+
+@property --twilight-start {
+	syntax: "<color>";
+	initial-value: #5b55a0;
+	inherits: false;
+}
+
+@property --twilight-end {
+	syntax: "<color>";
+	initial-value: #f19cba;
+	inherits: false;
+}
+
+@keyframes twilight {
+	from {
+		--twilight-start: #5b55a0;
+		--twilight-end: #f19cba;
+	}
+
+	to {
+		--twilight-start: #0c3b68;
+		--twilight-end: #5b55a0;
+	}
+}
+
+.twilight-animation {
+	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%);
+
+	scroll-timeline-name: --self;
+	animation: twilight 1ms linear;
+	animation-timeline: --self;
+}

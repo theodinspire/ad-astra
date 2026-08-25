@@ -1,0 +1,19 @@
+﻿@theme {
+	--color-core-50: #faf5f8;
+	--color-core-100: #f7ecf4;
+	--color-core-200: #f0dae9;
+	--color-core-300: #e5bcd7;
+	--color-core-400: #d492bc;
+	--color-core-500: #c371a3;
+	--color-core-600: #ae5486;
+	--color-core-700: #903f6a;
+	--color-core-800: #7c385b;
+	--color-core-900: #68334e;
+	--color-core-950: #3e192c;
+}
+
+:root {
+	--amaranth-pink: #f19cba;
+	--coronation-blue: #5b55a0;
+	--opal-blue: #0c3b68;
+}

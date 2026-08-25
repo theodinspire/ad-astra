@@ -1,39 +1,42 @@
 @import "tailwindcss";
 
-@theme {
-	--color-core-50: #faf5f8;
-	--color-core-100: #f7ecf4;
-	--color-core-200: #f0dae9;
-	--color-core-300: #e5bcd7;
-	--color-core-400: #d492bc;
-	--color-core-500: #c371a3;
-	--color-core-600: #ae5486;
-	--color-core-700: #903f6a;
-	--color-core-800: #7c385b;
-	--color-core-900: #68334e;
-	--color-core-950: #3e192c;
-}
+@import "colors.css";
+@import "gradients.css";
 
 html {
-	background-color: #f1f5f9;
 	font-family: sans-serif;
 }
 
 body {
 	margin: 0 auto;
 	width: 100%;
-	max-width: 80ch;
-	padding: 1rem;
+
+	max-width: 64rem;
 	line-height: 1.5;
+	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%) fixed;
 }
 
 * {
 	box-sizing: border-box;
 }
 
+article {
+	background-color: var(--color-core-50);
+	padding: 2rem;
+	border-radius: 1rem;
+}
+
 h1 {
 	margin: 1rem 0;
 	font-size: 2.5rem;
+}
+
+p:not(:last-of-type) {
+	padding-bottom: 1rem;
+}
+
+pre {
+	padding: 1rem;
 }
 
 /* Navigation Styles */
