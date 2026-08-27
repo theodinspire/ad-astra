@@ -8,8 +8,12 @@ interface Props {
 
 const { id, class: className, short, scroll, ...rest } = Astro.props;
 
+const height = short ? 'h-20' : 'h-80 sm:h-40';
+
 const outerClassList = [
 	'outer',
+	'my-2 w-full lg:w-120 mx-auto relative rounded-sm overflow-scroll',
+	height,
 	className,
 ];
 
@@ -17,44 +21,13 @@ if (short) outerClassList.push('short');
 ---
 <div id={id} class={outerClassList.join(' ')}>
 	{Astro.slots.has('default') &&
-		<div class="copy"><div><slot /></div></div>}
+		<div class="copy sticky size-full flex items-center justify-center text-4xl italic"><div><slot /></div></div>}
 	{scroll &&
-		<div class="scroller" />}
+		<div class="scroller z-1 h-5/1" />}
 </div>
 
 <style>
-	.outer {
-		margin: 1em min(25%, 5em);
-		border-radius: 3px;
-
-		position: relative;
-		height: 150px;
-
-		overflow-y: auto;
-
-		&.short {
-			height: 75px;
-		}
-	}
-
 	.copy {
-		position: sticky;
-		top: 0;
-
-		height: 100%;
-		width: 100%;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		font-family: "Agency FB", sans-serif;
-		font-size: 2.5em;
-		font-style: italic;
-	}
-
-	.scroller {
-		height: 500%;
-		z-index: 1;
+		font-family: "Agency FB", sans-serif;;
 	}
 </style>
