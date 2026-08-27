@@ -1,5 +1,5 @@
 ﻿---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseHeroLayout from '@layouts/BaseHeroLayout.astro';
 import BlogSummary from '@components/BlogSummary.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
@@ -24,10 +24,10 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<BaseLayout pageTitle={tag}>
+<BaseHeroLayout pageTitle={tag}>
 	<p>Posts tagged with <em>{tag}</em></p>
 	<ul>
 		{posts
 			.sort((left, right) => right.data.pubDate - left.data.pubDate).map((post) => <BlogSummary id={post.id} title={post.data.title} />)}
 	</ul>
-</BaseLayout>
+</BaseHeroLayout>

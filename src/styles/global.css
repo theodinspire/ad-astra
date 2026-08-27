@@ -1,39 +1,81 @@
 @import "tailwindcss";
 
-@theme {
-	--color-core-50: #faf5f8;
-	--color-core-100: #f7ecf4;
-	--color-core-200: #f0dae9;
-	--color-core-300: #e5bcd7;
-	--color-core-400: #d492bc;
-	--color-core-500: #c371a3;
-	--color-core-600: #ae5486;
-	--color-core-700: #903f6a;
-	--color-core-800: #7c385b;
-	--color-core-900: #68334e;
-	--color-core-950: #3e192c;
-}
+@import "colors.css";
+@import "gradients.css";
 
 html {
-	background-color: #f1f5f9;
 	font-family: sans-serif;
+	font-size: 16px;
+}
+
+.scroll-wrapper {
+	scroll-timeline-name: --twilight;
 }
 
 body {
 	margin: 0 auto;
 	width: 100%;
-	max-width: 80ch;
-	padding: 1rem;
+
+	max-height: 100vh;
+	overflow-y: scroll;
+
+	max-width: 64rem;
 	line-height: 1.5;
+	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%) fixed;
+
+	animation: twilight 1ms linear;
+	animation-timeline: scroll(y);
 }
 
 * {
 	box-sizing: border-box;
 }
 
+h1.title {
+	color: var(--color-core-100);
+}
+
+a {
+	color: var(--color-core-200);
+	&:active, &:hover {
+		color: var(--color-core-600);
+		text-decoration-line: underline;
+	}
+
+	&:visited {
+		color: var(--color-core-300);
+	}
+}
+
+article, .main {
+	background-color: var(--color-core-50);
+	padding: 2rem;
+	border-radius: 1rem;
+
+	a {
+		color: var(--color-core-700);
+		&:active, &:hover {
+			color: var(--color-core-600);
+			text-decoration-line: underline;
+		}
+
+		&:visited {
+			color: var(--color-core-500);
+		}
+	}
+}
+
 h1 {
 	margin: 1rem 0;
 	font-size: 2.5rem;
+}
+
+p:not(:last-of-type) {
+	padding-bottom: 1rem;
+}
+
+pre {
+	padding: 1rem;
 }
 
 /* Navigation Styles */
@@ -44,30 +86,6 @@ h1 {
 	font-size: 1.2rem;
 	font-weight: bold;
 	padding: 5px 10px;
-}
-
-a, .light a, a.light {
-	color: var(--color-core-700);
-	&:active, &:hover {
-		color: var(--color-core-600);
-		text-decoration-line: underline;
-	}
-
-	&:visited {
-		color: var(--color-core-800);
-	}
-}
-
-.dark a, a.dark {
-	color: var(--color-core-50);
-	&:active, &:hover {
-		color: var(--color-core-200);
-		text-decoration-line: underline;
-	}
-
-	&:visited {
-		color: var(--color-core-100);
-	}
 }
 
 .nav-links {
@@ -83,11 +101,12 @@ a, .light a, a.light {
 		font-size: 1.2rem;
 		font-weight: bold;
 		text-transform: uppercase;
-		color: #0d0950;
+		color: var(--color-core-200);
 
 		&:hover,
 		&:focus {
 			background-color: #ff9776;
+			color: #0d0950;
 		}
 	}
 }

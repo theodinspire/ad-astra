@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseHeroLayout from '@layouts/BaseHeroLayout.astro';
 import '@styles/global.css';
 import BlogSummary from '@components/BlogSummary.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
@@ -10,12 +10,14 @@ const allPosts = (await getCollection('blog') as CollectionEntry<'blog'>[])
 const pageTitle = 'Blog';
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-	<ul class="list-disc marker:text-core-500">
-		{
-			allPosts.map((post) => (
-				<BlogSummary id={post.id} title={post.data.title} />
-			))
-		}
-	</ul>
-</BaseLayout>
+<BaseHeroLayout pageTitle={pageTitle}>
+	<div class="main">
+		<ul class="list-disc marker:text-core-500">
+			{
+				allPosts.map((post) => (
+					<BlogSummary id={post.id} title={post.data.title} />
+				))
+			}
+		</ul>
+	</div>
+</BaseHeroLayout>
