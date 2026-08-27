@@ -28,11 +28,3 @@
 		--twilight-end: #5b55a0;
 	}
 }
-
-.twilight-animation {
-	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%);
-
-	scroll-timeline-name: --self;
-	animation: twilight 1ms linear;
-	animation-timeline: --self;
-}

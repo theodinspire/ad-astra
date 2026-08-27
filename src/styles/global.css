@@ -5,25 +5,64 @@
 
 html {
 	font-family: sans-serif;
+	font-size: 16px;
+}
+
+.scroll-wrapper {
+	scroll-timeline-name: --twilight;
 }
 
 body {
 	margin: 0 auto;
 	width: 100%;
 
+	max-height: 100vh;
+	overflow-y: scroll;
+
 	max-width: 64rem;
 	line-height: 1.5;
 	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%) fixed;
+
+	animation: twilight 1ms linear;
+	animation-timeline: scroll(y);
 }
 
 * {
 	box-sizing: border-box;
 }
 
-article {
+h1.title {
+	color: var(--color-core-100);
+}
+
+a {
+	color: var(--color-core-200);
+	&:active, &:hover {
+		color: var(--color-core-600);
+		text-decoration-line: underline;
+	}
+
+	&:visited {
+		color: var(--color-core-300);
+	}
+}
+
+article, .main {
 	background-color: var(--color-core-50);
 	padding: 2rem;
 	border-radius: 1rem;
+
+	a {
+		color: var(--color-core-700);
+		&:active, &:hover {
+			color: var(--color-core-600);
+			text-decoration-line: underline;
+		}
+
+		&:visited {
+			color: var(--color-core-500);
+		}
+	}
 }
 
 h1 {
@@ -49,30 +88,6 @@ pre {
 	padding: 5px 10px;
 }
 
-a, .light a, a.light {
-	color: var(--color-core-700);
-	&:active, &:hover {
-		color: var(--color-core-600);
-		text-decoration-line: underline;
-	}
-
-	&:visited {
-		color: var(--color-core-800);
-	}
-}
-
-.dark a, a.dark {
-	color: var(--color-core-50);
-	&:active, &:hover {
-		color: var(--color-core-200);
-		text-decoration-line: underline;
-	}
-
-	&:visited {
-		color: var(--color-core-100);
-	}
-}
-
 .nav-links {
 	width: 100%;
 	display: none;
@@ -86,11 +101,12 @@ a, .light a, a.light {
 		font-size: 1.2rem;
 		font-weight: bold;
 		text-transform: uppercase;
-		color: #0d0950;
+		color: var(--color-core-200);
 
 		&:hover,
 		&:focus {
 			background-color: #ff9776;
+			color: #0d0950;
 		}
 	}
 }
