@@ -1,5 +1,5 @@
 ---
-import BaseHeroLayout from '../layouts/BaseHeroLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -18,12 +18,12 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'C#', 'Vue'];
 const skillColor = 'crimson';
 ---
 
-<BaseHeroLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
 	<h2>... just tutorializing</h2>
 
 	<p>Some quick facts:</p>
 	<ul>{skills.map((x) => <li class="skill">{x}</li>)}</ul>
-</BaseHeroLayout>
+</BaseLayout>
 
 <style define:vars={{ skillColor }}>
 	h1 {

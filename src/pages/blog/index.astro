@@ -1,5 +1,5 @@
 ---
-import BaseHeroLayout from '@layouts/BaseHeroLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 import '@styles/global.css';
 import BlogSummary from '@components/BlogSummary.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
@@ -10,7 +10,7 @@ const allPosts = (await getCollection('blog') as CollectionEntry<'blog'>[])
 const pageTitle = 'Blog';
 ---
 
-<BaseHeroLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
 	<div class="main">
 		<ul class="list-disc marker:text-core-500">
 			{
@@ -20,4 +20,4 @@ const pageTitle = 'Blog';
 			}
 		</ul>
 	</div>
-</BaseHeroLayout>
+</BaseLayout>

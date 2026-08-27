@@ -1,6 +1,6 @@
 ﻿---
 import type { GetStaticPaths } from 'astro';
-import BaseHeroLayout from '@layouts/BaseHeroLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 interface Props {
@@ -27,7 +27,7 @@ const tags = post.data.tags;
 const { Content } = await render(post);
 ---
 
-<BaseHeroLayout pageTitle={post.data.title}>
+<BaseLayout pageTitle={post.data.title}>
 	<article>
 		<div class="byline">
 			<address class="author">by {post.data.author}</address> on
@@ -46,7 +46,7 @@ const { Content } = await render(post);
 		</div>
 		<Content />
 	</article>
-</BaseHeroLayout>
+</BaseLayout>
 
 <style>
 	a {

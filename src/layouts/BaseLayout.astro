@@ -3,7 +3,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const { pageTitle } = Astro.props;
+const { pageTitle, inSpace } = Astro.props;
+const showHero = Astro.slots.has('default') && !inSpace;
+
+const mainClasses = `main m-4 rounded-2xl p-4 lg:p-8 ${showHero && 'bg-core-50'}`
 ---
 
 <html lang="en">
@@ -15,11 +18,13 @@ const { pageTitle } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>theodinspire</title>
 	</head>
-	<body>
+	<body class="lg:max-w-300">
 		<Header />
 
-		<h1 class="title">{pageTitle}</h1>
-		<slot />
+		<h1 class="title text-core-200 text-4xl m-4">{pageTitle}</h1>
+			<div class={mainClasses}>
+				<slot />
+			</div>
 		<Footer />
 		<script>
 			import '../scripts/menu.js';
