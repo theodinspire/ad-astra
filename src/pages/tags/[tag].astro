@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const getStaticPaths = async () => {
-	const allPosts = (await getCollection('blog'));
+	const allPosts = await getCollection('blog');
 	const uniqueTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
 
 	return uniqueTags.map((tag) => {
@@ -27,7 +27,10 @@ const { posts } = Astro.props;
 <BaseLayout pageTitle={tag}>
 	<p>Posts tagged with <em>{tag}</em></p>
 	<ul>
-		{posts
-			.sort((left, right) => right.data.pubDate - left.data.pubDate).map((post) => <BlogSummary id={post.id} title={post.data.title} />)}
+		{
+			posts
+				.sort((left, right) => right.data.pubDate - left.data.pubDate)
+				.map((post) => <BlogSummary id={post.id} title={post.data.title} />)
+		}
 	</ul>
 </BaseLayout>

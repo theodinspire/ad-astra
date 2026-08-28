@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "colors.css";
-@import "gradients.css";
+@import 'colors.css';
+@import 'gradients.css';
 
 html {
 	font-family: sans-serif;
@@ -18,7 +18,8 @@ body {
 	overflow-y: scroll;
 
 	line-height: 1.5;
-	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%) fixed;
+	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%)
+		fixed;
 
 	animation: twilight 1ms linear;
 	animation-timeline: scroll(y);
@@ -30,7 +31,8 @@ body {
 
 a {
 	color: var(--color-core-200);
-	&:active, &:hover {
+	&:active,
+	&:hover {
 		color: var(--color-core-600);
 		text-decoration-line: underline;
 	}
@@ -43,7 +45,8 @@ a {
 .main {
 	a {
 		color: var(--color-core-700);
-		&:active, &:hover {
+		&:active,
+		&:hover {
 			color: var(--color-core-600);
 			text-decoration-line: underline;
 		}

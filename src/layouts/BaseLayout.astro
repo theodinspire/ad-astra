@@ -6,7 +6,7 @@ import '../styles/global.css';
 const { pageTitle, inSpace } = Astro.props;
 const showHero = Astro.slots.has('default') && !inSpace;
 
-const mainClasses = `main m-4 rounded-2xl p-4 lg:p-8 ${showHero && 'bg-core-50'}`
+const mainClasses = `main m-4 rounded-2xl p-4 lg:p-8 ${showHero && 'bg-core-50'}`;
 ---
 
 <html lang="en">
@@ -21,10 +21,10 @@ const mainClasses = `main m-4 rounded-2xl p-4 lg:p-8 ${showHero && 'bg-core-50'}
 	<body class="lg:max-w-300">
 		<Header />
 
-		<h1 class="title text-core-200 text-4xl m-4">{pageTitle}</h1>
-			<div class={mainClasses}>
-				<slot />
-			</div>
+		<h1 class="title text-core-200 m-4 text-4xl">{pageTitle}</h1>
+		<div class={mainClasses}>
+			<slot />
+		</div>
 		<Footer />
 		<script>
 			import '../scripts/menu.js';

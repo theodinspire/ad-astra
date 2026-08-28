@@ -5,10 +5,11 @@ description: 'Learning how to have more freedom in grouped files in my project d
 author: 'Odin Ravensson'
 tags: ['development', 'website', 'astro']
 ---
+
 import AdHoc from './AdHoc.vue';
 
 So far, on this site, I have blog posts generating only from the markdown files in my `./src/pages/posts` directory.
-However, this can be limiting if, say, I wanted to have *ad hoc* components and islands grouped in a directory with the
+However, this can be limiting if, say, I wanted to have _ad hoc_ components and islands grouped in a directory with the
 main post markdown file. Perhaps something a bit like in the following.
 
 ```
@@ -25,6 +26,7 @@ Markdown, JSON, and yaml—as that is how it knows what pages to generate. Addit
 Markdown files, one has to use the XML extension version of Markdown, `.mdx`.
 
 ### Adding MDX Support
+
 So my first step is to install the MDX plug-in for Astro. This little command installs the javascript library and adds
 the plug-in into the Astro configuration.
 
@@ -33,8 +35,11 @@ yarn astro add mdx
 ```
 
 ### Refactoring the Blog Content
+
 #### Moving the files
+
 I then moved my blog entries into a different segment of the file structure.
+
 ```
 ./src/content/blog
 ├── 20260223-1.md
@@ -45,8 +50,10 @@ I then moved my blog entries into a different segment of the file structure.
 ```
 
 #### Configuring the Content Collection
+
 Moving these out of `./src/pages/posts` essentially deletes all the content from the blog, so now I have to tell Astro
 where to find the pages. This itself is pretty easy: just export a dictionary of collections from `content.config.ts`.
+
 ```typescript
 import { defineCollection } from 'astro/content/config';
 import { glob } from 'astro/loaders';
@@ -67,6 +74,7 @@ definitions options using [Zod](https://zod.dev/api). Astro uses Zod's type infe
 entries as we will see below.
 
 #### Recreating the Base Blog Pages
+
 Next, I copied `./src/layouts/MarkdownPostLayout.astro` into `./src/pages/blog/[id].astro`. I also had to add the
 exported `getStaticPaths` method so that Astro knew where to get the post content.
 
@@ -87,12 +95,14 @@ const { post } = Astro.props;
 
 const { Content } = await render(post);
 ```
+
 That `render()` method handles the transformation from Markdown into an HTML component for Astro, which is a bit more
 work than the previous method. All the references to what was previously `Astro.props.frontmatter` had to be transformed
 into `Astro.props.post.data`, and the `<slot />` tag in the HTML had to be exchanged for `<Content />`. But when those
 were done, the pages generated smoothly.
 
 #### Updating the Blog and Tags Indices
+
 Since the pages were pulled into a collection, which already `glob`s them in, I no longer need to/can call them with
 vite's `import.meta.glob()` and instead have to call them in with `await getCollection('blog')`. I still get the same
 array usage of the entire set, but now I even get the type inferencing.
@@ -100,10 +110,14 @@ array usage of the entire set, but now I even get the type inferencing.
 Finally, all my pages are rendered exactly the same as they were before.
 
 ### And Now, We Proudly Present
+
 All this just so that I can add Vue components into my blog posts. Adding these lines to this extended Markdown post
+
 ```typescript jsx
 import AdHoc from './AdHoc.vue';
 <AdHoc />
 ```
-is all I need to pull in this *ad hoc* component:
+
+is all I need to pull in this _ad hoc_ component:
+
 <AdHoc />

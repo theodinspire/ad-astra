@@ -1,11 +1,11 @@
 ﻿@property --houdini-start {
-	syntax: "<color>";
+	syntax: '<color>';
 	initial-value: #5b55a0;
 	inherits: false;
 }
 
 @property --houdini-end {
-	syntax: "<color>";
+	syntax: '<color>';
 	initial-value: #f19cba;
 	inherits: false;
 }
@@ -15,11 +15,18 @@
 	--coronation-blue: #5b55a0;
 	--blue-opal: #0c3b68;
 
-	--blue-to-pink: linear-gradient(var(--coronation-blue), var(--amaranth-pink) 50%);
+	--blue-to-pink: linear-gradient(
+		var(--coronation-blue),
+		var(--amaranth-pink) 50%
+	);
 	--blue-to-blue: linear-gradient(var(--blue-opal), var(--coronation-blue) 50%);
 
 	--tricolor: linear-gradient(
-		var(--blue-opal), var(--coronation-blue) 25%, var(--coronation-blue) 50%, var(--amaranth-pink) 75%);
+		var(--blue-opal),
+		var(--coronation-blue) 25%,
+		var(--coronation-blue) 50%,
+		var(--amaranth-pink) 75%
+	);
 }
 
 @supports (scroll-timeline-axis: x) {
@@ -29,13 +36,21 @@
 }
 
 @keyframes naive {
-	from { background: var(--blue-to-pink); }
-	to { background: var(--blue-to-blue); }
+	from {
+		background: var(--blue-to-pink);
+	}
+	to {
+		background: var(--blue-to-blue);
+	}
 }
 
 @keyframes stops {
-	from { background-position: bottom; }
-	to { background-position: top; }
+	from {
+		background-position: bottom;
+	}
+	to {
+		background-position: top;
+	}
 }
 
 @keyframes houdini {

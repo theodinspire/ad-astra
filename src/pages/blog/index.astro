@@ -4,15 +4,16 @@ import '@styles/global.css';
 import BlogSummary from '@components/BlogSummary.astro';
 import { type CollectionEntry, getCollection } from 'astro:content';
 
-const allPosts = (await getCollection('blog') as CollectionEntry<'blog'>[])
-	.sort((left, right) => right.data.pubDate - left.data.pubDate);
+const allPosts = (
+	(await getCollection('blog')) as CollectionEntry<'blog'>[]
+).sort((left, right) => right.data.pubDate - left.data.pubDate);
 
 const pageTitle = 'Blog';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
 	<div class="main">
-		<ul class="list-disc marker:text-core-500">
+		<ul class="marker:text-core-500 list-disc">
 			{
 				allPosts.map((post) => (
 					<BlogSummary id={post.id} title={post.data.title} />

@@ -5,17 +5,18 @@ description: 'Learning how to create scroll sensitive backgrounds in CSS'
 author: 'Odin Ravensson'
 tags: ['development', 'website', 'css']
 ---
+
 import Swatch from './Swatch.astro';
 import './scrollers.css';
 
 <div class="not-supported">
-	Your browser does not support scroll-driven animation. If you are using Firefox, set
-	`layout.css.scroll-driven-animations.enabled` to `true` on your [about:config settings](about:config), and then
-	refresh this page.
+	Your browser does not support scroll-driven animation. If you are using
+	Firefox, set `layout.css.scroll-driven-animations.enabled` to `true` on your
+	[about:config settings](about:config), and then refresh this page.
 </div>
 
 Let's make a scroll sensitive background! As I've been contemplating the styling on this site, I've been thinking about
-*Sailor Moon* and its twilit pink aesthetic. To emulate this, it would feel nice to have a page descend into nighttime
+_Sailor Moon_ and its twilit pink aesthetic. To emulate this, it would feel nice to have a page descend into nighttime
 when you scroll down it.
 
 Let's start with this palette:
@@ -27,27 +28,43 @@ Let's start with this palette:
 	--opal-blue: #0c3b68;
 }
 ```
-<Swatch class="amaranth-pink" short>#F19CBA Amaranth Pink</Swatch>
-<Swatch class="coronation-blue" short>#5B55A0 Coronation Blue</Swatch>
-<Swatch class="blue-opal" short>#0C3B68 Blue Opal</Swatch>
+
+<Swatch class="amaranth-pink" short>
+	#F19CBA Amaranth Pink
+</Swatch>
+<Swatch class="coronation-blue" short>
+	#5B55A0 Coronation Blue
+</Swatch>
+<Swatch class="blue-opal" short>
+	#0C3B68 Blue Opal
+</Swatch>
 
 And now here are the two gradients I'd like to transition between:
 
 ```css
 :root {
-	--blue-to-pink: linear-gradient(var(--coronation-blue), var(--amaranth-pink) 50%);
+	--blue-to-pink: linear-gradient(
+		var(--coronation-blue),
+		var(--amaranth-pink) 50%
+	);
 	--blue-to-blue: linear-gradient(var(--blue-opal), var(--coronation-blue) 50%);
 }
 ```
+
 <Swatch class="pink-to-blue" />
 <Swatch class="blue-to-blue" />
 
 Now let's set up the keyframes:
+
 ```css
 @keyframes naive {
-	from { background: var(--blue-to-pink); }
+	from {
+		background: var(--blue-to-pink);
+	}
 
-	to { background: var(--blue-to-blue); }
+	to {
+		background: var(--blue-to-blue);
+	}
 }
 
 .naive-animation {
@@ -56,6 +73,7 @@ Now let's set up the keyframes:
 	animation-timeline: --self;
 }
 ```
+
 <Swatch scroll class="naive-animation" />
 
 But, as you can see, it jumps from one to the other once we reach the halfway mark. The first step to get around this
@@ -64,13 +82,20 @@ would be to animate the position of the stops.
 ```css
 :root {
 	--tricolor: linear-gradient(
-		var(--blue-opal), var(--coronation-blue) 25%,
-		var(--coronation-blue) 50%, var(--amaranth-pink) 75%)
+		var(--blue-opal),
+		var(--coronation-blue) 25%,
+		var(--coronation-blue) 50%,
+		var(--amaranth-pink) 75%
+	);
 }
 
 @keyframes stops {
-	from { background-position: bottom; }
-	to { background-position: top; }
+	from {
+		background-position: bottom;
+	}
+	to {
+		background-position: top;
+	}
 }
 
 .stops-animation {
@@ -82,6 +107,7 @@ would be to animate the position of the stops.
 	animation-timeline: --self;
 }
 ```
+
 <Swatch scroll class="stops-animation" />
 
 But this just slides the gradient as if it were a static image, not as if it were a sunset transitioning into night.
@@ -90,13 +116,13 @@ between gradients but the one drawback is that you have to use color primitive v
 
 ```css
 @property --houdini-start {
-	syntax: "<color>";
+	syntax: '<color>';
 	initial-value: #5b55a0;
 	inherits: false;
 }
 
 @property --houdini-end {
-	syntax: "<color>";
+	syntax: '<color>';
 	initial-value: #f19cba;
 	inherits: false;
 }
@@ -121,6 +147,7 @@ between gradients but the one drawback is that you have to use color primitive v
 	animation-timeline: --self;
 }
 ```
+
 <Swatch id="final" scroll class="houdini-animation" />
 
 Now this is exactly the kind of vibe I wanted.
