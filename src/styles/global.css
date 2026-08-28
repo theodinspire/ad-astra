@@ -92,14 +92,14 @@
 	}
 }
 
-.scroll-wrapper {
-	scroll-timeline-name: --twilight;
-}
-
 body {
 	overflow-y: scroll;
-	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%)
-		fixed;
+	background: linear-gradient(
+		var(--twilight-top),
+		var(--twilight-middle) 50%,
+		var(--twilight-middle) 80%,
+		var(--twilight-bottom))
+	fixed;
 
 	animation: twilight 1ms linear;
 	animation-timeline: scroll(y);
