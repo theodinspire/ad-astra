@@ -3,48 +3,23 @@
 @import 'colors.css';
 @import 'gradients.css';
 
-html {
-	font-family: sans-serif;
-	font-size: 16px;
-}
-
-.scroll-wrapper {
-	scroll-timeline-name: --twilight;
-}
-
-body {
-	margin: 0 auto;
-
-	overflow-y: scroll;
-
-	line-height: 1.5;
-	background: linear-gradient(var(--twilight-start), var(--twilight-end) 50%)
-		fixed;
-
-	animation: twilight 1ms linear;
-	animation-timeline: scroll(y);
-}
-
-* {
-	box-sizing: border-box;
-}
-
-a {
-	color: var(--color-core-200);
-	&:active,
-	&:hover {
-		color: var(--color-core-600);
-		text-decoration-line: underline;
+@layer base {
+	* {
+		box-sizing: border-box;
 	}
 
-	&:visited {
-		color: var(--color-core-300);
+	html {
+		font-family: sans-serif;
+		font-size: 16px;
 	}
-}
 
-.main {
+	body {
+		margin: 0 auto;
+		line-height: 1.5;
+	}
+
 	a {
-		color: var(--color-core-700);
+		color: var(--color-core-200);
 		&:active,
 		&:hover {
 			color: var(--color-core-600);
@@ -52,17 +27,82 @@ a {
 		}
 
 		&:visited {
-			color: var(--color-core-500);
+			color: var(--color-core-300);
+		}
+	}
+
+	.main {
+		a {
+			color: var(--color-core-700);
+			&:active,
+			&:hover {
+				color: var(--color-core-600);
+				text-decoration-line: underline;
+			}
+
+			&:visited {
+				color: var(--color-core-500);
+			}
+		}
+	}
+
+	pre {
+		padding: 1rem;
+	}
+
+	h1 {
+		font-size: var(--text-5xl);
+	}
+
+	h2 {
+		color: var(--color-core-800);
+		font-size: var(--text-2xl);
+		font-weight: bold;
+	}
+
+	h3 {
+		color: var(--color-core-800);
+		font-size: var(--text-lg);
+		font-weight: bold;
+
+		margin-top: 1.5rem;
+		margin-bottom: 0.25rem;
+
+		h1 ~ &, h2 ~ & {
+			margin-top: auto;
+		}
+	}
+
+	h4 {
+		color: var(--color-core-700);
+		font-size: var(--text-lg);
+		font-style: italic;
+		margin-top: 1.25rem;
+		margin-left: 0.5rem;
+
+		h1 ~ &, h2 ~ &, h3 ~ & {
+			margin-top: auto;
+		}
+	}
+
+	p, article > div, pre {
+		&:not(:last-child) {
+			margin-bottom: 0.75rem;
 		}
 	}
 }
 
-p:not(:last-of-type) {
-	padding-bottom: 1rem;
-}
+body {
+	overflow-y: scroll;
+	background: linear-gradient(
+		var(--twilight-top),
+		var(--twilight-middle) 50%,
+		var(--twilight-middle) 80%,
+		var(--twilight-bottom))
+	fixed;
 
-pre {
-	padding: 1rem;
+	animation: twilight 1ms linear;
+	animation-timeline: scroll(y);
 }
 
 /* Navigation Styles */
