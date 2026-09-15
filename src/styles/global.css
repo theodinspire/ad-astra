@@ -2,7 +2,6 @@
 
 @import 'colors.css';
 @import 'gradients.css';
-@import '@/assets/fonts/starblock.css';
 
 html {
 	font-family: sans-serif;
@@ -31,7 +30,9 @@ body {
 }
 
 h1, h2 {
-	font-family: starblock-regular, sans-serif;
+	font-family: var(--font-cyberthrone), sans-serif;
+	font-size: 5rem;
+	margin-top: -1rem;
 }
 
 a {

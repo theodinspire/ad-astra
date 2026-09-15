@@ -11,12 +11,12 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.local(),
-			name: 'starblock-regular',
-			cssVariable: '--font-starblock',
+			name: 'cyberthrone',
+			cssVariable: '--font-cyberthrone',
 			options: {
 				variants: [
 					{
-						src: ['./src/assets/fonts/starblock-regular-webfont.woff2'],
+						src: ['./src/assets/fonts/cyberthrone.ttf'],
 						weight: 'normal',
 						style: 'normal',
 					},
