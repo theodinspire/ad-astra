@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import vue from '@astrojs/vue';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
@@ -8,6 +8,22 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	site: 'https://theodinspire.com',
 	integrations: [vue(), mdx()],
+	fonts: [
+		{
+			provider: fontProviders.local(),
+			name: 'cyberthrone',
+			cssVariable: '--font-cyberthrone',
+			options: {
+				variants: [
+					{
+						src: ['./src/assets/fonts/cyberthrone.ttf'],
+						weight: 'normal',
+						style: 'normal',
+					},
+				],
+			},
+		},
+	],
 
 	vite: {
 		plugins: [tailwindcss()],

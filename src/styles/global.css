@@ -5,7 +5,7 @@
 
 @layer base {
 	* {
-		box-sizing: border-box;
+		box-sizing: content-box;
 	}
 
 	html {
@@ -50,13 +50,17 @@
 		padding: 1rem;
 	}
 
+	h1, h2 {
+		font-family: var(--font-cyberthrone), sans-serif;
+	}
+
 	h1 {
-		font-size: var(--text-5xl);
+		font-size: var(--text-7xl);
 	}
 
 	h2 {
 		color: var(--color-core-800);
-		font-size: var(--text-2xl);
+		font-size: var(--text-4xl);
 		font-weight: bold;
 	}
 
