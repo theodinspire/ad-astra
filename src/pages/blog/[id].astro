@@ -29,7 +29,7 @@ const { Content } = await render(post);
 
 <BaseLayout pageTitle={post.data.title}>
 	<article>
-		<div class="byline">
+		<div class="byline text-core-600 my-auto">
 			<address class="author">by {post.data.author}</address> on
 			<time datetime={pubDate.toISOString()} title={bylineDate}
 				>{bylineDate}</time

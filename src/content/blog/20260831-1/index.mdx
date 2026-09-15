@@ -1,0 +1,50 @@
+﻿---
+title: 'Stabilizing Transition Animation'
+pubDate: 2026-08-31T12:59:09-05:00
+description: "How to handle element size animations such that following items don't jitter."
+author: 'Odin Ravensson'
+tags: ['css', 'html', 'animation']
+---
+import './styles.css';
+import BasicMenu from './BasicMenu.vue';
+import BorderBoxMenu from './BorderBoxMenu.vue';
+
+I've been tasked with making a menu, and the following would suffice per the acceptance criteria.
+
+<BasicMenu client:load />
+
+I wanted to add some animation to the menu to make it feel alive, and because I've been lauded for going the extra mile
+before in the application. Unfortunately my initial attempt caused a bit of a jigger.
+
+<BasicMenu class="naive" client:load />
+
+It's a small jitter. It's only a single frame and I'm having a hard time capturing it with my operating system's native
+tools. But it's there, and I know that if I were a consumer of the application, it'd drive me bonkers.
+
+What I've been trying to do is animate both the padding and the border to keep their additive sizing the same. However,
+I think this might be a good instance for using `box-sizing: border-box;`
+
+<BorderBoxMenu class="naive" client:load />
+
+`box-sizing: border-box` tells the browser to include the size of the border and the padding of a component in addition
+to the component's contents when handing its size, whereas the default value `content-box`, will only use the
+component's content.
+
+```css
+.content-sized {
+	box-sizing: content-box;
+
+	height: 10rem;
+	border: 0.25rem solid black;
+	padding: 1rem;
+} /* Component will be 12.5 root ems tall (10 + 2 × (0.25 + 1)) */
+
+.box-sized {
+	box-sizing: border-box;
+
+	height: 10rem;
+	border: 0.25rem solid black;
+	padding: 1rem;
+} /* Component will be 10 root ems tall, the border and padding do not count.
+     The content will have 7.5 root ems of space available before it makes the component grow.*/
+```

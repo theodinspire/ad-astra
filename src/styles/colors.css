@@ -12,6 +12,42 @@
 	--color-core-800: #7c385b;
 	--color-core-900: #68334e;
 	--color-core-950: #3e192c;
+
+	--color-cupid-50: #fef1f8;
+	--color-cupid-100: #fee5f3;
+	--color-cupid-200: #ffc0e2;
+	--color-cupid-300: #ffa1d1;
+	--color-cupid-400: #ff66b2;
+	--color-cupid-500: #fb3993;
+	--color-cupid-600: #eb176f;
+	--color-cupid-700: #cd0955;
+	--color-cupid-800: #a90b46;
+	--color-cupid-900: #8d0e3d;
+	--color-cupid-950: #570020;
+
+	--color-amber-50: #fffdea;
+	--color-amber-100: #fffac5;
+	--color-amber-200: #fff485;
+	--color-amber-300: #ffe946;
+	--color-amber-400: #ffd91b;
+	--color-amber-500: #ffbd00;
+	--color-amber-600: #e29300;
+	--color-amber-700: #bb6702;
+	--color-amber-800: #984f08;
+	--color-amber-900: #7c410b;
+	--color-amber-950: #482100;
+
+	--color-revolver-50: #f7f0fd;
+	--color-revolver-100: #f1e4fb;
+	--color-revolver-200: #e6cff6;
+	--color-revolver-300: #d8b1f0;
+	--color-revolver-400: #ce91e8;
+	--color-revolver-500: #c676de;
+	--color-revolver-600: #be5ccf;
+	--color-revolver-700: #a84cb6;
+	--color-revolver-800: #874093;
+	--color-revolver-900: #6c3976;
+	--color-revolver-950: #331b37;
 }
 
 :root {
