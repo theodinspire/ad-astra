@@ -50,7 +50,8 @@
 		padding: 1rem;
 	}
 
-	h1, h2 {
+	h1,
+	h2 {
 		font-family: var(--font-cyberthrone), sans-serif;
 	}
 
@@ -72,7 +73,8 @@
 		margin-top: 1.5rem;
 		margin-bottom: 0.25rem;
 
-		h1 ~ &, h2 ~ & {
+		h1 ~ &,
+		h2 ~ & {
 			margin-top: auto;
 		}
 	}
@@ -84,12 +86,16 @@
 		margin-top: 1.25rem;
 		margin-left: 0.5rem;
 
-		h1 ~ &, h2 ~ &, h3 ~ & {
+		h1 ~ &,
+		h2 ~ &,
+		h3 ~ & {
 			margin-top: auto;
 		}
 	}
 
-	p, article > div, pre {
+	p,
+	article > div,
+	pre {
 		&:not(:last-child) {
 			margin-bottom: 0.75rem;
 		}
@@ -99,11 +105,12 @@
 body {
 	overflow-y: scroll;
 	background: linear-gradient(
-		var(--twilight-top),
-		var(--twilight-middle) 50%,
-		var(--twilight-middle) 80%,
-		var(--twilight-bottom))
-	fixed;
+			var(--twilight-top),
+			var(--twilight-middle) 50%,
+			var(--twilight-middle) 80%,
+			var(--twilight-bottom)
+		)
+		fixed;
 
 	animation: twilight 1ms linear;
 	animation-timeline: scroll(y);

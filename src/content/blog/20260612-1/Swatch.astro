@@ -21,15 +21,13 @@ if (short) outerClassList.push('short');
 ---
 
 <div id={id} class={outerClassList.join(' ')}>
-	{
-		Astro.slots.has('default') && (
-			<div class="copy sticky flex size-full items-center justify-center text-4xl italic">
-				<div>
-					<slot />
-				</div>
+	{Astro.slots.has('default') && (
+		<div class="copy sticky flex size-full items-center justify-center text-4xl italic">
+			<div>
+				<slot />
 			</div>
-		)
-	}
+		</div>
+	)}
 	{scroll && <div class="scroller z-1 h-5/1" />}
 </div>
 

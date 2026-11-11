@@ -10,7 +10,7 @@ const showHero = Astro.slots.has('default') && !inSpace;
 const mainClasses = `main m-4 rounded-2xl p-4 lg:p-8 ${showHero && 'bg-core-50'}`;
 ---
 
-<Foundation>
+<Foundation pageTitle={pageTitle}>
 	<Header />
 	<h1 class="title text-core-200 m-4 text-7xl">{pageTitle}</h1>
 	<div class={mainClasses}>

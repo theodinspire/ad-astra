@@ -17,19 +17,17 @@ const tags = frontmatter.tags;
 <BaseLayout pageTitle={frontmatter.title}>
 	<article>
 		<div class="byline">
-			<address class="author">by {frontmatter.author}</address> on <time
-				datetime={pubDate.toISOString()}
-				title={bylineDate}>{bylineDate}</time
-			>
+			<address class="author">by {frontmatter.author}</address>on{' '}
+			<time datetime={pubDate.toISOString()} title={bylineDate}>
+				{bylineDate}
+			</time>
 		</div>
 		<div class="tags">
-			{
-				tags.map((tag: string) => (
-					<p class="tag">
-						<a href={`/tags/${tag}`}>{tag}</a>
-					</p>
-				))
-			}
+			{tags.map((tag: string) => (
+				<p class="tag">
+					<a href={`/tags/${tag}`}>{tag}</a>
+				</p>
+			))}
 		</div>
 	</article>
 	<slot />

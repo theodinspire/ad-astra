@@ -1,6 +1,8 @@
 ﻿---
 import { Font } from 'astro:assets';
 import '../styles/global.css';
+
+const { pageTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -11,7 +13,7 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<Font cssVariable="--font-cyberthrone" />
-		<title>theodinspire</title>
+		<title>{pageTitle ?? 'theodinspire'}</title>
 	</head>
 	<body class="lg:max-w-300">
 		<slot />

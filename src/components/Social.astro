@@ -4,7 +4,9 @@ const { platform, username, url } = Astro.props;
 const href = url ?? `https://www.${platform}.com/${username}`;
 ---
 
-<a class="dark" href={href}>{platform}</a>
+<a class="dark" href={href}>
+	{platform}
+</a>
 
 <style>
 	a {
