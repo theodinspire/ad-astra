@@ -2,7 +2,7 @@
 import { Font } from 'astro:assets';
 import '@styles/skeleton.css';
 
-const { pageTitle } = Astro.props;
+const { pageTitle, class: c } = Astro.props;
 ---
 
 <html lang="en">
@@ -15,7 +15,7 @@ const { pageTitle } = Astro.props;
 		<Font cssVariable="--font-cyberthrone" />
 		<title>{pageTitle ?? 'theodinspire'}</title>
 	</head>
-	<body>
+	<body class={c}>
 		<slot />
 	</body>
 </html>
